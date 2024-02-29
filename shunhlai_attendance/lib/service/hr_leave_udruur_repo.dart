@@ -32,6 +32,7 @@ class HrLeaveUdruur {
       "name": name,
       "request_date_from": datefrom,
       "request_date_to": dateto,
+      "company_id": Globals.getCompanyId(),
       // "number_of_days ": duration,
       "state": state
     };
@@ -78,6 +79,7 @@ class HrLeaveTsagaar {
     var requestBody = {
       "name": name,
       "employee_id": employeeId,
+      "company_id": Globals.getCompanyId(),
       "department_id": departmentId,
       "request_hour_from": hourfrom,
       "request_hour_to": hourto,
@@ -89,6 +91,7 @@ class HrLeaveTsagaar {
       "holiday_type": holidayType,
       "state": "confirm"
     };
+    print(Globals.getCompanyId());
 
     request.body = json.encode(requestBody);
     request.headers.addAll(headers);

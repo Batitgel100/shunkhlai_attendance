@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:shunhlai_attendance/components/custom_indicator.dart';
 import 'package:shunhlai_attendance/constant/constant.dart';
+import 'package:shunhlai_attendance/globals.dart';
 import 'package:shunhlai_attendance/models/hr_leave_entity.dart';
 import 'package:shunhlai_attendance/screen/hr_leave/hr_leave_screen.dart';
 import 'package:shunhlai_attendance/service/hr_leave_list.dart';
@@ -17,22 +18,40 @@ class _HrLeaveListScreenState extends State<HrLeaveListScreen> {
   HrLeaveListApiClient fetchList = HrLeaveListApiClient();
   List<HrLeaveEntity> _leaveTypes = [];
   bool isloading = true;
+  final TextEditingController _searchController = TextEditingController();
+  List<HrLeaveEntity> _filteredLeaveTypes = [];
+
   @override
   void initState() {
     super.initState();
+
     fetchData();
   }
 
   Future<void> fetchData() async {
     try {
       List<HrLeaveEntity> fetchedData = await fetchList.fetchData();
+      // fetchedData.sort((a, b) =>
+      //     b.requestDateFrom!.compareTo(a.requestDateFrom as DateTime));
       setState(() {
         _leaveTypes = fetchedData;
+        _filteredLeaveTypes = _leaveTypes; // Initialize filtered list
         isloading = false;
       });
     } catch (error) {
       print('Error: $error');
     }
+  }
+
+  void _filterSearchResults(String query) {
+    List<HrLeaveEntity> searchList = _leaveTypes.where((leave) {
+      String formattedDateFrom =
+          DateFormat('yyyy-MM-dd').format(leave.requestDateFrom as DateTime);
+      return formattedDateFrom.contains(query);
+    }).toList();
+    setState(() {
+      _filteredLeaveTypes = searchList;
+    });
   }
 
   void fetch() {
@@ -47,9 +66,35 @@ class _HrLeaveListScreenState extends State<HrLeaveListScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         iconTheme: const IconThemeData(color: Colors.black),
+        title: Container(
+          // width: MediaQuery.of(con .text).size.width * 0.5,
+          decoration: BoxDecoration(
+            border: Border.all(
+              width: 1,
+              color: AppColors.mainColor,
+            ),
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: TextField(
+              controller: _searchController,
+              onChanged: (value) {
+                _filterSearchResults(value);
+              },
+              decoration: const InputDecoration(
+                hintText: 'Огноогоор хайх...',
+                border: InputBorder.none,
+                hintStyle: TextStyle(color: Color.fromARGB(255, 117, 119, 118)),
+              ),
+              style: TextStyles.black14,
+            ),
+          ),
+        ),
       ),
       floatingActionButton: InkWell(
         onTap: () {
+          print(Globals.getCompanyId());
           Navigator.push(
               context,
               MaterialPageRoute(
@@ -86,9 +131,9 @@ class _HrLeaveListScreenState extends State<HrLeaveListScreen> {
               children: [
                 Expanded(
                   child: ListView.builder(
-                    itemCount: _leaveTypes.length,
+                    itemCount: _filteredLeaveTypes.length,
                     itemBuilder: (BuildContext context, int index) {
-                      var item = _leaveTypes[index];
+                      var item = _filteredLeaveTypes[index];
                       String formattedDatefrom = DateFormat('yyyy-MM-dd')
                           .format(item.requestDateFrom as DateTime);
                       String formattedDateTo = DateFormat('yyyy-MM-dd')
