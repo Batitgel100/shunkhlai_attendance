@@ -9,7 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shunhlai_attendance/constant/app_url.dart';
 import 'package:shunhlai_attendance/globals.dart';
 import 'package:shunhlai_attendance/models/attendance_entity.dart';
-import 'package:shunhlai_attendance/service/attendance_today.dart';
+import 'package:shunhlai_attendance/service/attendance/attendance_today.dart';
 import 'package:shunhlai_attendance/utils/utils.dart';
 
 class RegisterAttendance {

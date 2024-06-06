@@ -13,10 +13,10 @@ import 'package:shunhlai_attendance/globals.dart';
 import 'package:shunhlai_attendance/models/attendance_entity.dart';
 import 'package:shunhlai_attendance/screen/attendance%20register/camera_leave.dart';
 import 'package:shunhlai_attendance/screen/attendance%20register/open_camera.dart';
-import 'package:shunhlai_attendance/service/attendance_list_repo.dart';
-import 'package:shunhlai_attendance/service/attendance_today.dart';
+import 'package:shunhlai_attendance/service/attendance/attendance_list_repo.dart';
+import 'package:shunhlai_attendance/service/attendance/attendance_today.dart';
 import 'package:shunhlai_attendance/service/company_name_repo.dart';
-import 'package:shunhlai_attendance/service/register_attendance.dart';
+import 'package:shunhlai_attendance/service/attendance/register_attendance.dart';
 import 'package:shunhlai_attendance/service/settings_repo.dart';
 import 'package:shunhlai_attendance/utils/utils.dart';
 
@@ -150,7 +150,7 @@ class _AttendanceRegisterScreenState extends State<AttendanceRegisterScreen> {
   bool _refreshData = false;
 
   void registerCame() {
-    if (isInLocation == false) {
+    if (isInLocation == true) {
       showDialog(
           context: context,
           builder: (_) => AlertDialog(
@@ -195,7 +195,7 @@ class _AttendanceRegisterScreenState extends State<AttendanceRegisterScreen> {
 //явсан ирц бүртгэх
   void registerLeeave() {
     today.fetchData();
-    if (isInLocation == false) {
+    if (isInLocation == true) {
       if (Globals.getLeft() == false) {
         showDialog(
             context: context,

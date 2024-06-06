@@ -47,8 +47,8 @@ class HrLeaveEntity {
         name: json["name"],
         employeeId: EmployeeId.fromJson(json["employee_id"]),
         holidayStatusId: HolidayStatusId.fromJson(json["holiday_status_id"]),
-        requestDateFrom: DateTime.parse(json["request_date_from"]),
-        requestDateTo: DateTime.parse(json["request_date_to"]),
+        requestDateFrom: DateTime.parse(json["date_from"]),
+        requestDateTo: DateTime.parse(json["date_to"]),
         numberOfDays: json["number_of_days"],
         departmentId: EmployeeId.fromJson(json["department_id"]),
         numberOfHoursDisplay: json["number_of_hours_display"],
@@ -64,9 +64,9 @@ class HrLeaveEntity {
         "name": name,
         "employee_id": employeeId!.toJson(),
         "holiday_status_id": holidayStatusId!.toJson(),
-        "request_date_from":
+        "date_from":
             "${requestDateFrom!.year.toString().padLeft(4, '0')}-${requestDateFrom!.month.toString().padLeft(2, '0')}-${requestDateFrom!.day.toString().padLeft(2, '0')}",
-        "request_date_to":
+        "date_to":
             "${requestDateTo!.year.toString().padLeft(4, '0')}-${requestDateTo!.month.toString().padLeft(2, '0')}-${requestDateTo!.day.toString().padLeft(2, '0')}",
         "number_of_days": numberOfDays,
         "number_of_hours_display": numberOfHoursDisplay,

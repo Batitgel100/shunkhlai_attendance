@@ -7,7 +7,7 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shunhlai_attendance/screen/main/main_screen.dart';
-import 'package:shunhlai_attendance/service/register_attendance.dart';
+import 'package:shunhlai_attendance/service/attendance/register_attendance.dart';
 
 class CameraApp extends StatefulWidget {
   final bool isInLocation;

@@ -4,7 +4,7 @@ import 'package:shunhlai_attendance/components/custom_indicator.dart';
 import 'package:shunhlai_attendance/constant/constant.dart';
 import 'package:shunhlai_attendance/globals.dart';
 import 'package:shunhlai_attendance/models/attendince_list_entity.dart';
-import 'package:shunhlai_attendance/service/attendance_list_repo.dart';
+import 'package:shunhlai_attendance/service/attendance/attendance_list_repo.dart';
 
 class AttendanceListScreen extends StatefulWidget {
   const AttendanceListScreen({Key? key}) : super(key: key);

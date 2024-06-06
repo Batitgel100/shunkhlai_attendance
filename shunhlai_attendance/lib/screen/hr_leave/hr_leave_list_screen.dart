@@ -5,7 +5,7 @@ import 'package:shunhlai_attendance/constant/constant.dart';
 import 'package:shunhlai_attendance/globals.dart';
 import 'package:shunhlai_attendance/models/hr_leave_entity.dart';
 import 'package:shunhlai_attendance/screen/hr_leave/hr_leave_screen.dart';
-import 'package:shunhlai_attendance/service/hr_leave_list.dart';
+import 'package:shunhlai_attendance/service/hr%20leave/hr_leave_list.dart';
 
 class HrLeaveListScreen extends StatefulWidget {
   const HrLeaveListScreen({super.key});

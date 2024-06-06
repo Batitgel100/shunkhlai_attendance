@@ -31,19 +31,22 @@ class HrLeaveUdruur {
       "holiday_type": holidayType,
       "name": name,
       "request_date_from": datefrom,
-      "request_date_to": dateto,
+      "request_date_to": dateto, "date_from": '$datefrom 09:00:00',
+      "date_to": '$dateto 09:00:00',
       "company_id": Globals.getCompanyId(),
       // "number_of_days ": duration,
       "state": state
     };
-
+    print(
+      '$datefrom 09:00:00',
+    );
     request.body = json.encode(requestBody);
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
 
     if (response.statusCode == 200) {
-      print(' %&#%&#%&#%&#${holidayType.toString()}');
+      print(' %&#%&#%&#%&#${Globals.getCompanyId()}');
       // Utils.flushBarSuccessMessage('Амжилттай нэмэгдлээ', context);
 
       print(await response.stream.bytesToString());
@@ -85,8 +88,8 @@ class HrLeaveTsagaar {
       "request_hour_to": hourto,
       "request_unit_hours": unit,
       "holiday_status_id": holidayStatusId,
-      "request_date_from": datefrom,
-      "request_date_to": dateto,
+      "date_from": '$datefrom 09:00:00',
+      "date_to": '$dateto 09:00:00',
       "number_of_hours_display": duration,
       "holiday_type": holidayType,
       "state": "confirm"
